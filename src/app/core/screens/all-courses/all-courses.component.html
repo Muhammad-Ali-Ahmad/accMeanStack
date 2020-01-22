@@ -1,0 +1,37 @@
+<button class="btn btn-success" (click)="createNewCourse()">Add New</button>
+<br/>
+<ng-container *ngIf="toggle">
+    <br/>
+    <br/>
+        <form class="form-inline" #createCourse="ngForm" (ngSubmit)="submitNewCourse(createCourse.value)">
+            <div class="form-group mb-2">
+                <label for="courseName">Course Name:</label>
+                <input type="text" class="form-control" name="courseName" ngModel>
+            </div>
+            <div class="form-group mb-2">
+                <label for="courseDescription">Course Description:</label>
+                <input type="text" class="form-control" name="courseDescription" ngModel>
+            </div>
+            <div class="form-group mb-2">
+                <label for="courseDate">Course Date:</label>
+                <input type="date" class="form-control" name="courseDate" ngModel>
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </form>
+</ng-container>
+<br/>
+<br/>
+<table class="table">
+    <thead>
+      <tr> 
+        <th *ngFor="let heading of headings" scope="col">{{heading}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let course of courses">
+        <td>{{course.courseName}}</td>
+        <td>{{course.date}}</td>
+        <td><a [routerLink]="['/course/details/', course.id]"><button class="btn btn-primary">View</button></a></td>
+      </tr>
+    </tbody>
+  </table>
